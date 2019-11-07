@@ -1,0 +1,3 @@
+usr/local/bin/tradeplus_coind usr/bin
+usr/local/bin/tradeplus_coin-cli usr/bin
+debian/examples/tradeplus_coin.conf etc/tradeplus_coin

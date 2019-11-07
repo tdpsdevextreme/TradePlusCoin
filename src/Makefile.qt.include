@@ -1,0 +1,862 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/tradeplus_coin-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# tradeplus_coin qt core #
+QT_TS = \
+  qt/locale/tradeplus_coin_bg.ts \
+  qt/locale/tradeplus_coin_ca.ts \
+  qt/locale/tradeplus_coin_cs.ts \
+  qt/locale/tradeplus_coin_da.ts \
+  qt/locale/tradeplus_coin_de.ts \
+  qt/locale/tradeplus_coin_en.ts \
+  qt/locale/tradeplus_coin_en_GB.ts \
+  qt/locale/tradeplus_coin_en_US.ts \
+  qt/locale/tradeplus_coin_eo.ts \
+  qt/locale/tradeplus_coin_es.ts \
+  qt/locale/tradeplus_coin_es_ES.ts \
+  qt/locale/tradeplus_coin_fi.ts \
+  qt/locale/tradeplus_coin_fr_FR.ts \
+  qt/locale/tradeplus_coin_hi_IN.ts \
+  qt/locale/tradeplus_coin_hr.ts \
+  qt/locale/tradeplus_coin_hr_HR.ts \
+  qt/locale/tradeplus_coin_it.ts \
+  qt/locale/tradeplus_coin_ja.ts \
+  qt/locale/tradeplus_coin_ko_KR.ts \
+  qt/locale/tradeplus_coin_lt_LT.ts \
+  qt/locale/tradeplus_coin_nl.ts \
+  qt/locale/tradeplus_coin_pl.ts \
+  qt/locale/tradeplus_coin_pt.ts \
+  qt/locale/tradeplus_coin_pt_BR.ts \
+  qt/locale/tradeplus_coin_ro_RO.ts \
+  qt/locale/tradeplus_coin_ru.ts \
+  qt/locale/tradeplus_coin_sk.ts \
+  qt/locale/tradeplus_coin_sv.ts \
+  qt/locale/tradeplus_coin_tr.ts \
+  qt/locale/tradeplus_coin_uk.ts \
+  qt/locale/tradeplus_coin_vi.ts \
+  qt/locale/tradeplus_coin_zh_CN.ts \
+  qt/locale/tradeplus_coin_zh_TW.ts
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/bip38tooldialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/blockexplorer.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/governancepage.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/masternodelist.ui \
+  qt/forms/multisenddialog.ui \
+  qt/forms/multisigdialog.ui\
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/overviewpage.ui \
+  qt/forms/receivecoinsdialog.ui \
+  qt/forms/privacydialog.ui \
+  qt/forms/receiverequestdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/forms/sendcoinsdialog.ui \
+  qt/forms/sendcoinsentry.ui \
+  qt/forms/signverifymessagedialog.ui \
+  qt/forms/transactiondescdialog.ui \
+  qt/tradeplus_coin/forms/loadingdialog.ui \
+  qt/forms/ztdpscontroldialog.ui \
+  qt/tradeplus_coin/forms/snackbar.ui \
+  qt/tradeplus_coin/forms/navmenuwidget.ui \
+  qt/tradeplus_coin/forms/lockunlock.ui \
+  qt/tradeplus_coin/forms/expandablebutton.ui \
+  qt/tradeplus_coin/forms/receivedialog.ui \
+  qt/tradeplus_coin/forms/walletpassworddialog.ui \
+  qt/tradeplus_coin/forms/topbar.ui \
+  qt/tradeplus_coin/forms/txrow.ui \
+  qt/tradeplus_coin/forms/dashboardwidget.ui \
+  qt/tradeplus_coin/forms/coincontroltdpswidget.ui \
+  qt/tradeplus_coin/forms/addresslabelrow.ui \
+  qt/tradeplus_coin/forms/contactdropdownrow.ui \
+  qt/tradeplus_coin/forms/mninfodialog.ui \
+  qt/tradeplus_coin/forms/optionbutton.ui \
+  qt/tradeplus_coin/forms/masternodewizarddialog.ui \
+  qt/tradeplus_coin/forms/mnrow.ui \
+  qt/tradeplus_coin/forms/masternodeswidget.ui \
+  qt/tradeplus_coin/forms/myaddressrow.ui \
+  qt/tradeplus_coin/forms/sendchangeaddressdialog.ui \
+  qt/tradeplus_coin/forms/sendconfirmdialog.ui \
+  qt/tradeplus_coin/forms/sendcustomfeedialog.ui \
+  qt/tradeplus_coin/forms/sendchangeaddressdialog.ui \
+  qt/tradeplus_coin/forms/sendmultirow.ui \
+  qt/tradeplus_coin/forms/send.ui \
+  qt/tradeplus_coin/forms/addnewaddressdialog.ui \
+  qt/tradeplus_coin/forms/addnewcontactdialog.ui \
+  qt/tradeplus_coin/forms/requestdialog.ui \
+  qt/tradeplus_coin/forms/receivewidget.ui \
+  qt/tradeplus_coin/forms/tooltipmenu.ui \
+  qt/tradeplus_coin/forms/addresseswidget.ui \
+  qt/tradeplus_coin/forms/defaultdialog.ui \
+  qt/tradeplus_coin/forms/denomgenerationdialog.ui \
+  qt/tradeplus_coin/settings/forms/settingsbackupwallet.ui \
+  qt/tradeplus_coin/settings/forms/settingsbittoolwidget.ui \
+  qt/tradeplus_coin/settings/forms/settingsconsolewidget.ui \
+  qt/tradeplus_coin/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/tradeplus_coin/settings/forms/settingsfaqwidget.ui \
+  qt/tradeplus_coin/settings/forms/settingsinformationwidget.ui \
+  qt/tradeplus_coin/settings/forms/settingsmainoptionswidget.ui \
+  qt/tradeplus_coin/settings/forms/settingsmultisenddialog.ui \
+  qt/tradeplus_coin/settings/forms/settingsmultisendwidget.ui \
+  qt/tradeplus_coin/settings/forms/settingssignmessagewidgets.ui \
+  qt/tradeplus_coin/settings/forms/settingswalletoptionswidget.ui \
+  qt/tradeplus_coin/settings/forms/settingswalletrepairwidget.ui \
+  qt/tradeplus_coin/settings/forms/settingswidget.ui \
+  qt/tradeplus_coin/forms/welcomecontentwidget.ui \
+  qt/tradeplus_coin/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bip38tooldialog.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/moc_bitcoinamountfield.cpp \
+  qt/moc_bitcoingui.cpp \
+  qt/tradeplus_coin/moc_tradeplus_coingui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_blockexplorer.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_governancepage.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_masternodelist.cpp \
+  qt/moc_multisenddialog.cpp \
+  qt/moc_multisigdialog.cpp\
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_overviewpage.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_receivecoinsdialog.cpp \
+  qt/moc_privacydialog.cpp \
+  qt/moc_proposalframe.cpp \
+  qt/moc_receiverequestdialog.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_sendcoinsdialog.cpp \
+  qt/moc_sendcoinsentry.cpp \
+  qt/moc_signverifymessagedialog.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactiondescdialog.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_transactionview.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletframe.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/moc_walletview.cpp \
+  qt/tradeplus_coin/moc_loadingdialog.cpp \
+  qt/moc_ztdpscontroldialog.cpp \
+  qt/tradeplus_coin/moc_pwidget.cpp \
+  qt/tradeplus_coin/moc_snackbar.cpp \
+  qt/tradeplus_coin/moc_navmenuwidget.cpp \
+  qt/tradeplus_coin/moc_lockunlock.cpp \
+  qt/tradeplus_coin/moc_expandablebutton.cpp \
+  qt/tradeplus_coin/moc_furabstractlistitemdelegate.cpp \
+  qt/tradeplus_coin/moc_receivedialog.cpp \
+  qt/tradeplus_coin/moc_walletpassworddialog.cpp \
+  qt/tradeplus_coin/moc_topbar.cpp \
+  qt/tradeplus_coin/moc_txrow.cpp \
+  qt/tradeplus_coin/moc_dashboardwidget.cpp \
+  qt/tradeplus_coin/moc_coincontroltdpswidget.cpp \
+  qt/tradeplus_coin/moc_addresslabelrow.cpp \
+  qt/tradeplus_coin/moc_contactdropdownrow.cpp \
+  qt/tradeplus_coin/moc_mninfodialog.cpp \
+  qt/tradeplus_coin/moc_optionbutton.cpp \
+  qt/tradeplus_coin/moc_mnmodel.cpp \
+  qt/tradeplus_coin/moc_masternodewizarddialog.cpp \
+  qt/tradeplus_coin/moc_mnrow.cpp \
+  qt/tradeplus_coin/moc_masternodeswidget.cpp \
+  qt/tradeplus_coin/moc_myaddressrow.cpp \
+  qt/tradeplus_coin/moc_contactsdropdown.cpp \
+  qt/tradeplus_coin/moc_sendchangeaddressdialog.cpp \
+  qt/tradeplus_coin/moc_sendconfirmdialog.cpp \
+  qt/tradeplus_coin/moc_sendcustomfeedialog.cpp \
+  qt/tradeplus_coin/moc_sendchangeaddressdialog.cpp \
+  qt/tradeplus_coin/moc_sendmultirow.cpp \
+  qt/tradeplus_coin/moc_send.cpp \
+  qt/tradeplus_coin/moc_addnewaddressdialog.cpp \
+  qt/tradeplus_coin/moc_addnewcontactdialog.cpp \
+  qt/tradeplus_coin/moc_requestdialog.cpp \
+  qt/tradeplus_coin/moc_receivewidget.cpp \
+  qt/tradeplus_coin/moc_tooltipmenu.cpp \
+  qt/tradeplus_coin/moc_addresseswidget.cpp \
+  qt/tradeplus_coin/moc_defaultdialog.cpp \
+  qt/tradeplus_coin/moc_denomgenerationdialog.cpp \
+  qt/tradeplus_coin/settings/moc_settingsbackupwallet.cpp \
+  qt/tradeplus_coin/settings/moc_settingsbittoolwidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingsconsolewidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingsfaqwidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingsinformationwidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingsmainoptionswidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingsmultisenddialog.cpp \
+  qt/tradeplus_coin/settings/moc_settingsmultisendwidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingssignmessagewidgets.cpp \
+  qt/tradeplus_coin/settings/moc_settingswalletoptionswidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingswalletrepairwidget.cpp \
+  qt/tradeplus_coin/settings/moc_settingswidget.cpp \
+  qt/tradeplus_coin/moc_welcomecontentwidget.cpp \
+  qt/tradeplus_coin/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/tradeplus_coin.moc \
+  qt/bitcoinamountfield.moc \
+  qt/intro.moc \
+  qt/overviewpage.moc \
+  qt/rpcconsole.moc \
+  qt/tradeplus_coin/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_tradeplus_coin.cpp
+QT_QRC = qt/tradeplus_coin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_tradeplus_coin_locale.cpp
+QT_QRC_LOCALE = qt/tradeplus_coin_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bip38tooldialog.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/bitcoinamountfield.h \
+  qt/bitcoingui.h \
+  qt/tradeplus_coin/tradeplus_coingui.h \
+  qt/bitcoinunits.h \
+  qt/blockexplorer.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/governancepage.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/masternodelist.h \
+  qt/multisenddialog.h \
+  qt/multisigdialog.h\
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/overviewpage.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/proposalframe.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/receivecoinsdialog.h \
+  qt/privacydialog.h \
+  qt/receiverequestdialog.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/sendcoinsdialog.h \
+  qt/sendcoinsentry.h \
+  qt/signverifymessagedialog.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactiondescdialog.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/transactionview.h \
+  qt/utilitydialog.h \
+  qt/walletframe.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/tradeplus_coin/prunnable.h \
+  qt/tradeplus_coin/loadingdialog.h \
+  qt/walletview.h \
+  qt/winshutdownmonitor.h \
+  qt/ztdpscontroldialog.h \
+  qt/tradeplus_coin/pwidget.h \
+  qt/tradeplus_coin/snackbar.h \
+  qt/tradeplus_coin/navmenuwidget.h \
+  qt/tradeplus_coin/lockunlock.h \
+  qt/tradeplus_coin/receivedialog.h \
+  qt/tradeplus_coin/furlistrow.h \
+  qt/tradeplus_coin/furabstractlistitemdelegate.h \
+  qt/tradeplus_coin/txviewholder.h \
+  qt/tradeplus_coin/qtutils.h \
+  qt/tradeplus_coin/expandablebutton.h \
+  qt/tradeplus_coin/walletpassworddialog.h \
+  qt/tradeplus_coin/topbar.h \
+  qt/tradeplus_coin/txrow.h \
+  qt/tradeplus_coin/addressfilterproxymodel.h \
+  qt/tradeplus_coin/dashboardwidget.h \
+  qt/tradeplus_coin/coincontroltdpswidget.h \
+  qt/tradeplus_coin/addresslabelrow.h \
+  qt/tradeplus_coin/contactdropdownrow.h \
+  qt/tradeplus_coin/mninfodialog.h \
+  qt/tradeplus_coin/optionbutton.h \
+  qt/tradeplus_coin/mnmodel.h \
+  qt/tradeplus_coin/masternodewizarddialog.h \
+  qt/tradeplus_coin/mnrow.h \
+  qt/tradeplus_coin/masternodeswidget.h \
+  qt/tradeplus_coin/myaddressrow.h \
+  qt/tradeplus_coin/contactsdropdown.h \
+  qt/tradeplus_coin/sendchangeaddressdialog.h \
+  qt/tradeplus_coin/sendconfirmdialog.h \
+  qt/tradeplus_coin/sendcustomfeedialog.h \
+  qt/tradeplus_coin/sendchangeaddressdialog.h \
+  qt/tradeplus_coin/sendmultirow.h \
+  qt/tradeplus_coin/send.h \
+  qt/tradeplus_coin/addnewaddressdialog.h \
+  qt/tradeplus_coin/addnewcontactdialog.h \
+  qt/tradeplus_coin/requestdialog.h \
+  qt/tradeplus_coin/receivewidget.h \
+  qt/tradeplus_coin/tooltipmenu.h \
+  qt/tradeplus_coin/addresseswidget.h \
+  qt/tradeplus_coin/defaultdialog.h \
+  qt/tradeplus_coin/denomgenerationdialog.h \
+  qt/tradeplus_coin/settings/settingsbackupwallet.h \
+  qt/tradeplus_coin/settings/settingsbittoolwidget.h \
+  qt/tradeplus_coin/settings/settingsconsolewidget.h \
+  qt/tradeplus_coin/settings/settingsdisplayoptionswidget.h \
+  qt/tradeplus_coin/settings/settingsfaqwidget.h \
+  qt/tradeplus_coin/settings/settingsinformationwidget.h \
+  qt/tradeplus_coin/settings/settingsmainoptionswidget.h \
+  qt/tradeplus_coin/settings/settingsmultisenddialog.h \
+  qt/tradeplus_coin/settings/settingsmultisendwidget.h \
+  qt/tradeplus_coin/settings/settingssignmessagewidgets.h \
+  qt/tradeplus_coin/settings/settingswalletoptionswidget.h \
+  qt/tradeplus_coin/settings/settingswalletrepairwidget.h \
+  qt/tradeplus_coin/settings/settingswidget.h \
+  qt/tradeplus_coin/welcomecontentwidget.h \
+  qt/tradeplus_coin/splash.h
+
+RES_ICONS = \
+  qt/res/icons/add.png \
+  qt/res/icons/address-book.png \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/browse.png \
+  qt/res/icons/clock1.png \
+  qt/res/icons/clock2.png \
+  qt/res/icons/clock3.png \
+  qt/res/icons/clock4.png \
+  qt/res/icons/clock5.png \
+  qt/res/icons/configure.png \
+  qt/res/icons/connect0_16.png \
+  qt/res/icons/connect1_16.png \
+  qt/res/icons/connect2_16.png \
+  qt/res/icons/connect3_16.png \
+  qt/res/icons/connect4_16.png \
+  qt/res/icons/debugwindow.png \
+  qt/res/icons/edit.png \
+  qt/res/icons/editcopy.png \
+  qt/res/icons/editpaste.png \
+  qt/res/icons/explorer.png \
+  qt/res/icons/export.png \
+  qt/res/icons/eye.png \
+  qt/res/icons/eye_minus.png \
+  qt/res/icons/eye_plus.png \
+  qt/res/icons/filesave.png \
+  qt/res/icons/history.png \
+  qt/res/icons/key.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/masternodes.png \
+  qt/res/icons/onion.png \
+  qt/res/icons/qrcode.png \
+  qt/res/icons/quit.png \
+  qt/res/icons/privacy.png \
+  qt/res/icons/remove.png \
+  qt/res/icons/staking_active.png \
+  qt/res/icons/staking_inactive.png \
+  qt/res/icons/synced.png \
+  qt/res/icons/trade.png \
+  qt/res/icons/transaction0.png \
+  qt/res/icons/transaction2.png \
+  qt/res/icons/transaction_conflicted.png \
+  qt/res/icons/tx_inout.png \
+  qt/res/icons/tx_input.png \
+  qt/res/icons/tx_output.png \
+  qt/res/icons/tx_mined.png \
+  qt/res/icons/ic-transaction-received.png \
+  qt/res/icons/ic-transaction-mint.png \
+  qt/res/icons/ic-transaction-sent.png \
+  qt/res/icons/ic-transaction-staked.png \
+  qt/res/icons/yesvote.png \
+  qt/res/icons/novote.png \
+  qt/res/icons/abstainvote.png \
+  qt/tradeplus_coin/res/img/bg-dashboard-banner.png \
+  qt/tradeplus_coin/res/img/bg-multi-number-dark.png \
+  qt/tradeplus_coin/res/img/ic-check-locked.png \
+  qt/tradeplus_coin/res/img/ic-nav-address.png \
+  qt/tradeplus_coin/res/img/ic-update.png \
+  qt/tradeplus_coin/res/img/bg-multi-number.png \
+  qt/tradeplus_coin/res/img/ic-check-mint-off.png \
+  qt/tradeplus_coin/res/img/ic-nav-dashboard-active.png \
+  qt/tradeplus_coin/res/img/ic-wallet-status-locked.png \
+  qt/tradeplus_coin/res/img/bg-splash.png \
+  qt/tradeplus_coin/res/img/ic-check-mint.png \
+  qt/tradeplus_coin/res/img/ic-nav-dashboard-hover.png \
+  qt/tradeplus_coin/res/img/ic-wallet-status-staking.png \
+  qt/tradeplus_coin/res/img/ic-check-peers-off.png \
+  qt/tradeplus_coin/res/img/ic-nav-dashboard.png \
+  qt/tradeplus_coin/res/img/ic-wallet-status-unlocked.png \
+  qt/tradeplus_coin/res/img/ic-check-peers.png \
+  qt/tradeplus_coin/res/img/ic-nav-master-active.png \
+  qt/tradeplus_coin/res/img/ic-watch-password-white.png \
+  qt/tradeplus_coin/res/img/bg-welcome-container.png \
+  qt/tradeplus_coin/res/img/bg-welcome-container@2x.png \
+  qt/tradeplus_coin/res/img/bg-welcome-container@3x.png \
+  qt/tradeplus_coin/res/img/ic-check-staking-off.png \
+  qt/tradeplus_coin/res/img/ic-nav-master-hover.png \
+  qt/tradeplus_coin/res/img/ic-watch-password.png \
+  qt/tradeplus_coin/res/img/bg-welcome.png \
+  qt/tradeplus_coin/res/img/bg-welcome@2x.jpg \
+  qt/tradeplus_coin/res/img/bg-welcome@3x.jpg \
+  qt/tradeplus_coin/res/img/bg-welcome.png \
+  qt/tradeplus_coin/res/img/ic-check-staking.png \
+  qt/tradeplus_coin/res/img/ic-nav-master.png \
+  qt/tradeplus_coin/res/img/img-dashboard-banner.jpg \
+  qt/tradeplus_coin/res/img/btn-radio-active.png \
+  qt/tradeplus_coin/res/img/ic-check-sync-off.png \
+  qt/tradeplus_coin/res/img/ic-nav-privacy-active.png \
+  qt/tradeplus_coin/res/img/img-empty-contacts.png \
+  qt/tradeplus_coin/res/img/btn-radio-off.png \
+  qt/tradeplus_coin/res/img/ic-check-sync.png \
+  qt/tradeplus_coin/res/img/ic-nav-privacy-hover.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-contacts.png \
+  qt/tradeplus_coin/res/img/ic-contact-arrow-down.png \
+  qt/tradeplus_coin/res/img/ic-contact-arrow-down-white.png \
+  qt/tradeplus_coin/res/img/ic-check-sync.png \
+  qt/tradeplus_coin/res/img/ic-check-faq.png \
+  qt/tradeplus_coin/res/img/ic-nav-privacy.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-error.png \
+  qt/tradeplus_coin/res/img/ic-add-label.png \
+  qt/tradeplus_coin/res/img/ic-pending.png \
+  qt/tradeplus_coin/res/img/ic-check-theme-dark.png \
+  qt/tradeplus_coin/res/img/ic-nav-receive-active.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-masternode.png \
+  qt/tradeplus_coin/res/img/ic-add-liliac.png \
+  qt/tradeplus_coin/res/img/ic-check-theme-light.png \
+  qt/tradeplus_coin/res/img/ic-nav-receive-hover.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-multisend.png \
+  qt/tradeplus_coin/res/img/ic-add-purple.png \
+  qt/tradeplus_coin/res/img/ic-check-white.png \
+  qt/tradeplus_coin/res/img/ic-nav-receive.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-peers.png \
+  qt/tradeplus_coin/res/img/ic-add.png \
+  qt/tradeplus_coin/res/img/ic-check.png \
+  qt/tradeplus_coin/res/img/ic-nav-send-active.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-staking-off.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-staking-on.png \
+  qt/tradeplus_coin/res/img/ic-address-book-grey.png \
+  qt/tradeplus_coin/res/img/ic-chevron-left.png \
+  qt/tradeplus_coin/res/img/ic-nav-send-hover.png \
+  qt/tradeplus_coin/res/img/img-empty-dark-transactions.png \
+  qt/tradeplus_coin/res/img/ic-address-book-white.png \
+  qt/tradeplus_coin/res/img/ic-chevron-right.png \
+  qt/tradeplus_coin/res/img/ic-nav-send.png \
+  qt/tradeplus_coin/res/img/img-empty-error.png \
+  qt/tradeplus_coin/res/img/ic-address-book.png \
+  qt/tradeplus_coin/res/img/ic-clear-liliac.png \
+  qt/tradeplus_coin/res/img/ic-nav-settings-active.png \
+  qt/tradeplus_coin/res/img/img-empty-masternode.png \
+  qt/tradeplus_coin/res/img/ic-address-send-white.png \
+  qt/tradeplus_coin/res/img/ic-clear-purple.png \
+  qt/tradeplus_coin/res/img/ic-nav-settings-hover.png \
+  qt/tradeplus_coin/res/img/img-empty-multisend.png \
+  qt/tradeplus_coin/res/img/ic-address-send.png \
+  qt/tradeplus_coin/res/img/ic-close-white.png \
+  qt/tradeplus_coin/res/img/ic-nav-settings.png \
+  qt/tradeplus_coin/res/img/img-empty-peers.png \
+  qt/tradeplus_coin/res/img/img-empty-privacy.png \
+  qt/tradeplus_coin/res/img/img-empty-privacy-dark.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-down-white.png \
+  qt/tradeplus_coin/res/img/ic-close.png \
+  qt/tradeplus_coin/res/img/ic-radio-liliac-on.png \
+  qt/tradeplus_coin/res/img/img-empty-staking-off.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-down.png \
+  qt/tradeplus_coin/res/img/ic-coin-tdps.png \
+  qt/tradeplus_coin/res/img/ic-receive-off.png \
+  qt/tradeplus_coin/res/img/img-empty-staking-on.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-up-white.png \
+  qt/tradeplus_coin/res/img/ic-coin-ztdps.png \
+  qt/tradeplus_coin/res/img/ic-receive-on.png \
+  qt/tradeplus_coin/res/img/img-empty-transactions.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-up.png \
+  qt/tradeplus_coin/res/img/ic-coin-ztdps.png \
+  qt/tradeplus_coin/res/img/ic-received.png \
+  qt/tradeplus_coin/res/img/img-logo-tradeplus_coin.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-white-down.png \
+  qt/tradeplus_coin/res/img/ic-combo-box.png \
+  qt/tradeplus_coin/res/img/ic-send.png \
+  qt/tradeplus_coin/res/img/img-logo-tradeplus_coin@2x.png \
+  qt/tradeplus_coin/res/img/ic-arrow-purple-down.png \
+  qt/tradeplus_coin/res/img/ic-connect.png \
+  qt/tradeplus_coin/res/img/ic-submenu-lock.png \
+  qt/tradeplus_coin/res/img/img-logo-tradeplus_coin@3x.png \
+  qt/tradeplus_coin/res/img/img-logo-tradeplus_coin.png \
+  qt/tradeplus_coin/res/img/ic-arrow-right-white.png \
+  qt/tradeplus_coin/res/img/ic-arrow-left-white.png \
+  qt/tradeplus_coin/res/img/ic-arrow-left.png \
+  qt/tradeplus_coin/res/img/ic-copy-liliac.png \
+  qt/tradeplus_coin/res/img/ic-submenu-staking.png \
+  qt/tradeplus_coin/res/img/img-nav-logo-tradeplus_coin.png \
+  qt/tradeplus_coin/res/img/ic-arrow-right.png \
+  qt/tradeplus_coin/res/img/ic-copy.png \
+  qt/tradeplus_coin/res/img/ic-copy-big.png \
+  qt/tradeplus_coin/res/img/ic-copy-big-white.png \
+  qt/tradeplus_coin/res/img/ic-submenu-unlock.png \
+  qt/tradeplus_coin/res/img/img-nav-logo.png \
+  qt/tradeplus_coin/res/img/ic-arrow-white-left.png \
+  qt/tradeplus_coin/res/img/ic-exit.png \
+  qt/tradeplus_coin/res/img/ic-switch-liliac-on.png \
+  qt/tradeplus_coin/res/img/img-nav-logo.png \
+  qt/tradeplus_coin/res/img/ic-arrow-white-right.png \
+  qt/tradeplus_coin/res/img/ic-expand.png \
+  qt/tradeplus_coin/res/img/ic-switch-off.png \
+  qt/tradeplus_coin/res/img/img-qr-test-big.png \
+  qt/tradeplus_coin/res/img/ic-check-active.png \
+  qt/tradeplus_coin/res/img/ic-folder.png \
+  qt/tradeplus_coin/res/img/ic-switch-on.png \
+  qt/tradeplus_coin/res/img/img-qr-test.png \
+  qt/tradeplus_coin/res/img/ic-check-box.png \
+  qt/tradeplus_coin/res/img/ic-check-box-dark-active.png \
+  qt/tradeplus_coin/res/img/ic-check-box-indeterminate.png \
+  qt/tradeplus_coin/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/tradeplus_coin/res/img/ic-label-liliac.png \
+  qt/tradeplus_coin/res/img/ic-transaction-warning.png \
+  qt/tradeplus_coin/res/img/ic-transaction-mint.png \
+  qt/tradeplus_coin/res/img/ic-transaction-mint-inactive.png \
+  qt/tradeplus_coin/res/img/img-qr.png \
+  qt/tradeplus_coin/res/img/ic-check-connect-off.png \
+  qt/tradeplus_coin/res/img/ic-label.png \
+  qt/tradeplus_coin/res/img/ic-transaction-received.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-received.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-warning.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-mint.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-mint-inactive.png \
+  qt/tradeplus_coin/res/img/ic-transaction-received-inactive.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-received-inactive.png \
+  qt/tradeplus_coin/res/img/img-welcome-step1.png \
+  qt/tradeplus_coin/res/img/ic-check-connect.png \
+  qt/tradeplus_coin/res/img/ic-menu-hover.png \
+  qt/tradeplus_coin/res/img/ic-transaction-sent.png \
+  qt/tradeplus_coin/res/img/ic-transaction-sent-inactive.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-sent.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-sent-inactive.png \
+  qt/tradeplus_coin/res/img/img-welcome-step2.png \
+  qt/tradeplus_coin/res/img/ic-check-dark.png \
+  qt/tradeplus_coin/res/img/ic-mint.png \
+  qt/tradeplus_coin/res/img/ic-transaction-staked.png \
+  qt/tradeplus_coin/res/img/ic-transaction-staked-inactive.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-staked.png \
+  qt/tradeplus_coin/res/img/dark/ic-transaction-staked-inactive.png \
+  qt/tradeplus_coin/res/img/img-welcome-step3.png \
+  qt/tradeplus_coin/res/img/ic-check-liliac-on.png \
+  qt/tradeplus_coin/res/img/ic-nav-address-active.png \
+  qt/tradeplus_coin/res/img/ic-unlock-staking.png \
+  qt/tradeplus_coin/res/img/img-welcome-step4.png \
+  qt/tradeplus_coin/res/img/ic-check-locked-off.png \
+  qt/tradeplus_coin/res/img/ic-nav-address-hover.png \
+  qt/tradeplus_coin/res/img/ic-update-liliac.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-down-purple.png \
+  qt/tradeplus_coin/res/img/ic-arrow-drop-up-purple.png \
+  qt/tradeplus_coin/res/img/ic-check-liliac-indeterminate.png \
+  qt/tradeplus_coin/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/tradeplus_coin/res/img/ic-check-box-indeterminate.png \
+  qt/tradeplus_coin/res/img/ani-loading-dark.gif \
+  qt/tradeplus_coin/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/bitcoinamountfield.cpp \
+  qt/bitcoingui.cpp \
+  qt/tradeplus_coin/tradeplus_coingui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/blockexplorer.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/masternodelist.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/bip38tooldialog.cpp \
+  qt/blockexplorer.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/governancepage.cpp \
+  qt/masternodelist.cpp \
+  qt/multisenddialog.cpp \
+  qt/multisigdialog.cpp\
+  qt/openuridialog.cpp \
+  qt/overviewpage.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/receivecoinsdialog.cpp \
+  qt/privacydialog.cpp \
+  qt/proposalframe.cpp \
+  qt/receiverequestdialog.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/sendcoinsdialog.cpp \
+  qt/sendcoinsentry.cpp \
+  qt/signverifymessagedialog.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactiondescdialog.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/transactionview.cpp \
+  qt/walletframe.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/walletview.cpp \
+  qt/tradeplus_coin/loadingdialog.cpp \
+  qt/ztdpscontroldialog.cpp \
+  qt/tradeplus_coin/pwidget.cpp \
+  qt/tradeplus_coin/snackbar.cpp \
+  qt/tradeplus_coin/navmenuwidget.cpp \
+  qt/tradeplus_coin/lockunlock.cpp \
+  qt/tradeplus_coin/receivedialog.cpp \
+  qt/tradeplus_coin/furabstractlistitemdelegate.cpp \
+  qt/tradeplus_coin/txviewholder.cpp \
+  qt/tradeplus_coin/qtutils.cpp \
+  qt/tradeplus_coin/expandablebutton.cpp \
+  qt/tradeplus_coin/walletpassworddialog.cpp \
+  qt/tradeplus_coin/topbar.cpp \
+  qt/tradeplus_coin/txrow.cpp \
+  qt/tradeplus_coin/addressfilterproxymodel.cpp \
+  qt/tradeplus_coin/dashboardwidget.cpp \
+  qt/tradeplus_coin/coincontroltdpswidget.cpp \
+  qt/tradeplus_coin/addresslabelrow.cpp \
+  qt/tradeplus_coin/contactdropdownrow.cpp \
+  qt/tradeplus_coin/contactsdropdown.cpp \
+  qt/tradeplus_coin/optionbutton.cpp \
+  qt/tradeplus_coin/mninfodialog.cpp \
+  qt/tradeplus_coin/mnmodel.cpp \
+  qt/tradeplus_coin/masternodewizarddialog.cpp \
+  qt/tradeplus_coin/mnrow.cpp \
+  qt/tradeplus_coin/masternodeswidget.cpp \
+  qt/tradeplus_coin/myaddressrow.cpp \
+  qt/tradeplus_coin/sendchangeaddressdialog.cpp \
+  qt/tradeplus_coin/sendconfirmdialog.cpp \
+  qt/tradeplus_coin/sendcustomfeedialog.cpp \
+  qt/tradeplus_coin/sendchangeaddressdialog.cpp \
+  qt/tradeplus_coin/sendmultirow.cpp \
+  qt/tradeplus_coin/send.cpp \
+  qt/tradeplus_coin/addnewaddressdialog.cpp \
+  qt/tradeplus_coin/addnewcontactdialog.cpp \
+  qt/tradeplus_coin/requestdialog.cpp \
+  qt/tradeplus_coin/receivewidget.cpp \
+  qt/tradeplus_coin/tooltipmenu.cpp \
+  qt/tradeplus_coin/addresseswidget.cpp \
+  qt/tradeplus_coin/defaultdialog.cpp \
+  qt/tradeplus_coin/denomgenerationdialog.cpp \
+  qt/tradeplus_coin/settings/settingsbackupwallet.cpp \
+  qt/tradeplus_coin/settings/settingsbittoolwidget.cpp \
+  qt/tradeplus_coin/settings/settingsconsolewidget.cpp \
+  qt/tradeplus_coin/settings/settingsdisplayoptionswidget.cpp \
+  qt/tradeplus_coin/settings/settingsfaqwidget.cpp \
+  qt/tradeplus_coin/settings/settingsinformationwidget.cpp \
+  qt/tradeplus_coin/settings/settingsmainoptionswidget.cpp \
+  qt/tradeplus_coin/settings/settingsmultisenddialog.cpp \
+  qt/tradeplus_coin/settings/settingsmultisendwidget.cpp \
+  qt/tradeplus_coin/settings/settingssignmessagewidgets.cpp \
+  qt/tradeplus_coin/settings/settingswalletoptionswidget.cpp \
+  qt/tradeplus_coin/settings/settingswalletrepairwidget.cpp \
+  qt/tradeplus_coin/settings/settingswidget.cpp \
+  qt/tradeplus_coin/welcomecontentwidget.cpp \
+  qt/tradeplus_coin/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/tradeplus_coin_logo_horizontal.png \
+  qt/res/images/downArrow_dark.png \
+  qt/res/images/downArrow_small_dark.png \
+  qt/res/images/downArrow_small.png \
+  qt/res/images/upArrow_small_dark.png \
+  qt/res/images/upArrow_small.png \
+  qt/res/images/leftArrow_small_dark.png \
+  qt/res/images/rightArrow_small_dark.png \
+  qt/res/images/qtreeview_selected.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/tradeplus_coin/res/css/style_dark.css \
+  qt/tradeplus_coin/res/css/style_light.css
+
+RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+
+BITCOIN_RC = qt/res/tradeplus_coin-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_tradeplus_coin_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# tradeplus_coin-qt binary #
+qt_tradeplus_coin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_tradeplus_coin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_tradeplus_coin_qt_SOURCES = qt/tradeplus_coin.cpp
+if TARGET_DARWIN
+  qt_tradeplus_coin_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_tradeplus_coin_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_tradeplus_coin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_tradeplus_coin_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_tradeplus_coin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_tradeplus_coin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_tradeplus_coin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_tradeplus_coin_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/tradeplus_coinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/tradeplus_coinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/tradeplus_coin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/tradeplus_coin_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name tradeplus_coin_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name tradeplus_coin $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_tradeplus_coin_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+tradeplus_coin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_tradeplus_coin_qt_OBJECTS) qt/tradeplus_coin-qt$(EXEEXT) $(LIBBITCOINQT)
+
+tradeplus_coin_qt : qt/tradeplus_coin-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

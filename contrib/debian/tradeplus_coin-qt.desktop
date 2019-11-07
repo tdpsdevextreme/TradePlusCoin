@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=TradePlus_Coin
+Comment=TradePlus_Coin P2P Cryptocurrency
+Comment[fr]=TradePlus_Coin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=TradePlus_Coin, eşten eşe kriptografik sanal para birimi
+Exec=tradeplus_coin-qt %u
+Terminal=false
+Type=Application
+Icon=tradeplus_coin128
+MimeType=x-scheme-handler/tradeplus_coin;
+Categories=Office;Finance;
+StartupWMClass=Tradeplus_Coin-qt

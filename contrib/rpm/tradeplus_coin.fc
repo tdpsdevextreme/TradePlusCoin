@@ -1,0 +1,8 @@
+/usr/bin/tradeplus_coin-cli		--	gen_context(system_u:object_r:tradeplus_coin_exec_t,s0)
+/usr/sbin/tradeplus_coind		--	gen_context(system_u:object_r:tradeplus_coin_exec_t,s0)
+/usr/lib(64)?/tradeplus_coin/tradeplus_coind		--	gen_context(system_u:object_r:tradeplus_coin_exec_t,s0)
+
+/etc/tradeplus_coin(/.*)?		gen_context(system_u:object_r:tradeplus_coin_conf_t,s0)
+/var/lib/tradeplus_coin(/.*)?		gen_context(system_u:object_r:tradeplus_coin_var_lib_t,s0)
+
+(/var)?/run/tradeplus_coind(/.*)?   gen_context(system_u:object_r:tradeplus_coin_var_run_t,s0)
