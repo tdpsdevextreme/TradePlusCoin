@@ -343,8 +343,8 @@ void MasterNodesWidget::onDeleteMNClicked(){
 
 void MasterNodesWidget::onCreateMNClicked(){
     if(verifyWalletUnlocked()) {
-        if(walletModel->getBalance() <= (COIN * 3000)){
-            inform(tr("No enough balance to create a master node, 3,000 TDPS required."));
+        if(walletModel->getBalance() <= (COIN * GetMNCollateral())){
+            inform(tr("No enough balance to create a master node, %1 TDPS required.").arg(GetMNCollateral()));
             return;
         }
         showHideOp(true);
